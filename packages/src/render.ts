@@ -17,6 +17,9 @@ const seoPrerender = async (config: any) => {
     network = {waitUntil: 'networkidle0'} // 等待所有请求结束
   }
   const href:string = new URL(config.base,config.local).toString().slice(0, -1) // 去掉最后一个/
+
+  await config.setup?.({ browser, page, config });
+
   for (const item of config.routes) {
     //console.log('path', path.join(config.local, item))
     //console.log('path2', config.local, item)
